@@ -109,7 +109,7 @@ void insert(node &x){
             insert_to_Arr(x,cur);
             file_Arr.update(cur,cur.my);
         }
-        else split(x,fa,cur,tp-1);
+        else split(x,fa,cur,tp);
     }
 }
 void split(node &x,Arr &fa,Arr &cur,int tp){
