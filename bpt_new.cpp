@@ -3,7 +3,7 @@
 #include<string>
 #include<queue>
 #include "MemoryRiver.hpp"
-const int M=100;
+const int M=32;
 class node;
 class full_node;
 class Arr;
