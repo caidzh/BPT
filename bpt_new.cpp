@@ -158,8 +158,6 @@ void split(node &x,Arr &fa,Arr &cur,int tp){
         cur_rt.size=1;
         file_Arr.update(cur_rt,cur_rt.my);
         root=cur_rt.my;
-        file_Arr.update(lson,lson.my);
-        file_Arr.update(rson,rson.my);
     }
     else insert_upper(B.a[0],fa,lson,rson,tp-1);
 }
@@ -195,18 +193,10 @@ void insert_upper(node &x,Arr &cur,Arr &lson,Arr &rson,int tp){
             A.a[j]=C.a[j];
         for(int j=0;j<cur_rson.size;j++)
             B.a[j]=C.a[j+cur_lson.size+1];
-        for(int j=0;j<cur_lson.size+1;j++){
+        for(int j=0;j<cur_lson.size+1;j++)
             cur_lson.son[j]=son[j];
-            Arr s;
-            file_Arr.read(s,son[j]);
-            file_Arr.update(s,s.my);
-        }
-        for(int j=0;j<cur_rson.size+1;j++){
+        for(int j=0;j<cur_rson.size+1;j++)
             cur_rson.son[j]=son[j+lson.size+1];
-            Arr s;
-            file_Arr.read(s,son[j+lson.size+1]);
-            file_Arr.update(s,s.my);
-        }
         cur_lson.arr=file_node.write(A);
         cur_rson.arr=file_node.write(B);
         file_Arr.update(cur_lson,cur_lson.my);
@@ -223,8 +213,6 @@ void insert_upper(node &x,Arr &cur,Arr &lson,Arr &rson,int tp){
             cur_rt.size=1;
             file_Arr.update(cur_rt,cur_rt.my);
             root=cur_rt.my;
-            file_Arr.update(cur_lson,cur_lson.my);
-            file_Arr.update(cur_rson,cur_rson.my);
         }
         else
             insert_upper(C.a[cur_lson.size],fa,cur_lson,cur_rson,tp-1);
@@ -443,9 +431,6 @@ void del_upper(node &x,Arr &cur,int tp){
                     cur.son[j]=cur.son[j-1];
                 cur.son[0]=bro.son[bro.size+1];
                 bro.son[bro.size+1]=-1;
-                Arr s;
-                file_Arr.read(s,cur.son[0]);
-                file_Arr.update(s,s.my);
                 file_Arr.update(bro,bro.my);
                 file_Arr.update(cur,cur.my);
                 fa_node.a[i-1]=y;
@@ -461,9 +446,6 @@ void del_upper(node &x,Arr &cur,int tp){
                 delete_from_Arr(y,bro);
                 insert_to_Arr(fa_node.a[i],cur);
                 cur.son[cur.size]=bro.son[0];
-                Arr s;
-                file_Arr.read(s,bro.son[0]);
-                file_Arr.update(s,s.my);
                 for(int j=0;j<=bro.size;j++)
                     bro.son[j]=bro.son[j+1];
                 file_Arr.update(bro,bro.my);
@@ -492,11 +474,6 @@ void del_upper(node &x,Arr &cur,int tp){
                 cur.son[j]=cur.son[j-bro.size-1];
             for(int j=0;j<=bro.size;j++)
                 cur.son[j]=bro.son[j];
-            for(int j=0;j<=cur.size;j++){
-                Arr s;
-                file_Arr.read(s,cur.son[j]);
-                file_Arr.update(s,s.my);
-            }
             file_Arr.update(cur,cur.my);
             flg=true;
         }
@@ -517,11 +494,6 @@ void del_upper(node &x,Arr &cur,int tp){
                 bro.son[j]=bro.son[j-cur.size-1];
             for(int j=0;j<=cur.size;j++)
                 bro.son[j]=cur.son[j];
-            for(int j=0;j<=bro.size;j++){
-                Arr s;
-                file_Arr.read(s,bro.son[j]);
-                file_Arr.update(s,s.my);
-            }
             file_Arr.update(bro,bro.my);
             cur=bro;
         }
