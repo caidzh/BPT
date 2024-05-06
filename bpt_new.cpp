@@ -10,9 +10,15 @@ class Arr;
 MemoryRiver<full_node>file_node("1");
 MemoryRiver<Arr>file_Arr("2");
 MemoryRiver<int>file_bpt("3");
+unsigned long long hash(string s){
+    unsigned long long h=0;
+    for(int i=0;i<s.length();i++)
+        h=h*19260817+s[i];
+    return h;
+}
 class node{
 public:
-    std::array<char,65>index;
+    unsigned long long index;
     int val;
     bool operator <(const node &x)const{
         if(index!=x.index)
@@ -562,9 +568,7 @@ void display(){
             file_node.read(b,a.arr);
             std::cout<<"[";
             for(int i=0;i<a.size;i++){
-                for(int j=0;b.a[i].index[j];j++)
-                    std::cout<<b.a[i].index[j];
-                std::cout<<" ";
+                std::cout<<b.a[i].index<<" ";
                 std::cout<<b.a[i].val<<",";
             }
             std::cout<<"] ";
@@ -618,7 +622,7 @@ int main(){
         string opt,ind;
         std::cin>>opt>>ind;
         node x;
-        fsta(x.index,ind);
+        x.index=hash(ind);
         if(opt[0]=='i'){
             std::cin>>x.val;
             insert(x);
@@ -641,7 +645,7 @@ int main(){
 }
 /*
 8
-insert  1966
+insert FlowersForAlgernon 1966
 insert CppPrimer 2012
 insert Dune 2021
 insert CppPrimer 2001
