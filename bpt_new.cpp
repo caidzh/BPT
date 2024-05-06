@@ -47,8 +47,6 @@ public:
     Arr(){
         size=arr=0;
         is_leaf=false;
-        for(int i=0;i<=M;i++)
-            son[i]=-1;
         my=prev=next=-1;
     };
 };
@@ -600,16 +598,16 @@ void fsta(std::array<char,65>&arr,string &s){
         arr[i]='\0';
 }
 int main(){
-    // freopen("data","r",stdin);
-    // freopen("out","w",stdout);
+    freopen("data","r",stdin);
+    freopen("out","w",stdout);
     std::ios::sync_with_stdio(0);
     std::cin.tie(0);
     std::cout.tie(0);
-    init();
-    // file_node.initialise("1");
-    // file_Arr.initialise("2");
-    // file_bpt.initialise("3");
-    // file_bpt.write_info(-1,1);
+    // init();
+    file_node.initialise("1");
+    file_Arr.initialise("2");
+    file_bpt.initialise("3");
+    file_bpt.write_info(-1,1);
     file_node.sizeofT=sizeof(full_node);
     file_Arr.sizeofT=sizeof(Arr);
     file_bpt.sizeofT=sizeof(int);
