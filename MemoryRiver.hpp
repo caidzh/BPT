@@ -17,7 +17,7 @@ public:
     fstream file;
     string file_name;
     int sizeofT = sizeof(T);
-    const int maxlen=50;
+    const int maxlen=20;
     int len;
     struct link{
         T val;
