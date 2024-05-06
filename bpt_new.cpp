@@ -3,7 +3,7 @@
 #include<string>
 #include<queue>
 #include "MemoryRiver.hpp"
-const int M=200;
+const int M=300;
 class node;
 class full_node;
 class Arr;
@@ -47,6 +47,8 @@ public:
     Arr(){
         size=arr=0;
         is_leaf=false;
+        for(int i=0;i<=M;i++)
+            son[i]=-1;
         my=prev=next=-1;
     };
 };
