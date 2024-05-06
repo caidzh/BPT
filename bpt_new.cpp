@@ -1,7 +1,6 @@
 #include<iostream>
 #include<array>
 #include<string>
-#include<queue>
 #include "MemoryRiver.hpp"
 const int M=300;
 class node;
@@ -28,8 +27,6 @@ public:
     bool operator ==(const node &x)const{
         return index==x.index&&val==x.val;
     }
-    // node(node &x):index(x.index),val(x.val){}
-    // node(std::array<char,65>&ind,int &val):index(ind),val(val){}
 };
 class full_node{
 public:
@@ -177,7 +174,7 @@ void insert_upper(node &x,Arr &cur,Arr &lson,Arr &rson,int tp){
     else{
         Arr cur_lson,cur_rson,fa;
         if(cur.my!=root)
-            file_Arr.read(fa,stk[tp-1].my);////////
+            file_Arr.read(fa,stk[tp-1].my);
         cur_lson.my=file_Arr.write(cur_lson);
         cur_rson.my=file_Arr.write(cur_rson);
         int son[M+2];
@@ -279,7 +276,7 @@ void del(node &x){
             if(b.my==root)
                 break;
             TP--;
-            file_Arr.read(a,stk[TP].my);//////////
+            file_Arr.read(a,stk[TP].my);
         }
         if(b.my!=root){
             full_node z;
@@ -411,7 +408,7 @@ void del_upper(node &x,Arr &cur,int tp){
     else{
         Arr fa;
         full_node fa_node;
-        file_Arr.read(fa,stk[tp-1].my);////////////
+        file_Arr.read(fa,stk[tp-1].my);
         file_node.read(fa_node,fa.arr);
         int i=delete_from_Arr(x,cur);
         for(int j=i;j<=cur.size;j++)
@@ -549,37 +546,6 @@ bool find(node &x){
     }while(A.a[0].index<=x.index);
     return flg;
 }
-
-void display(){
-    if(root==-1)
-        return;
-    std::queue<int>que;
-    que.push(root);
-    while(!que.empty()){
-        int size=que.size();
-        while(size--){
-            int u=que.front();
-            que.pop();
-            Arr a;
-            file_Arr.read(a,u);
-            full_node b;
-            file_node.read(b,a.arr);
-            std::cout<<"[";
-            for(int i=0;i<a.size;i++){
-                std::cout<<b.a[i].index<<" ";
-                std::cout<<b.a[i].val<<",";
-            }
-            std::cout<<"] ";
-            if(!a.is_leaf)
-                for(int i=0;i<=a.size;i++){
-                    que.push(a.son[i]);
-                    Arr son;
-                    file_Arr.read(son,a.son[i]);
-                }
-        }
-        std::cout<<"\n";
-    }
-}
 void init(){
     file_bpt.file.open("1",std::ios::in|std::ios::out|std::ios::binary);
     if(!file_bpt.file.good()){
@@ -598,16 +564,10 @@ void fsta(std::array<char,65>&arr,string &s){
         arr[i]='\0';
 }
 int main(){
-    // freopen("data","r",stdin);
-    // freopen("out","w",stdout);
     std::ios::sync_with_stdio(0);
     std::cin.tie(0);
     std::cout.tie(0);
     init();
-    // file_node.initialise("1");
-    // file_Arr.initialise("2");
-    // file_bpt.initialise("3");
-    // file_bpt.write_info(-1,1);
     file_node.sizeofT=sizeof(full_node);
     file_Arr.sizeofT=sizeof(Arr);
     file_bpt.sizeofT=sizeof(int);
@@ -634,22 +594,7 @@ int main(){
                 std::cout<<"null";
             std::cout<<"\n";
         }
-        // std::cout<<"after "<<cnt<<"th operation\n";
-        // display();
-        // std::cout<<"\n";
     }
     file_bpt.write_info(root,1);
     return 0;
 }
-/*
-8
-insert FlowersForAlgernon 1966
-insert CppPrimer 2012
-insert Dune 2021
-insert CppPrimer 2001
-find CppPrimer
-find Dune
-find FlowersForAlgernon
-find Java
-
-*/
