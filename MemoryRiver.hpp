@@ -39,6 +39,7 @@ public:
             delete ptr;
             ptr=nxt;
         }
+        file.close();
     }
     void initialise(string FN = "") {
         if (FN != "") file_name = FN;
