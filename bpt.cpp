@@ -547,15 +547,18 @@ bool find(node &x){
     return flg;
 }
 void init(){
-    file_bpt.file.open("1",std::ios::in|std::ios::out|std::ios::binary);
-    if(!file_bpt.file.good()){
-        file_node.initialise("1");
-        file_Arr.initialise("2");
+    if(!file_bpt.exist()){
+        file_Arr.initialise("1");
+        file_node.initialise("2");
         file_bpt.initialise("3");
         file_bpt.write_info(-1,1);
     }
-    else
-        file_bpt.file.close();
+    else{
+        file_Arr.open();
+        file_node.open();
+        file_bpt.open();
+    }
+    file_bpt.read(root,1);
 }
 void fsta(std::array<char,65>&arr,string &s){
     for(std::string::size_type i=0;i<s.length();i++)
