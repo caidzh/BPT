@@ -17,7 +17,7 @@ public:
     fstream file;
     string file_name;
     int sizeofT = sizeof(T);
-    const int maxlen=300;
+    const int maxlen=100;
     int len;
     struct link{
         T val;
@@ -77,6 +77,8 @@ public:
     void pop_back(){
         link *prv=tail->prv;
         prv->nxt=nullptr;
+        file.seekp(tail->pos);
+        file.write(reinterpret_cast<char *>(&tail->pos),sizeofT);
         delete tail;
         tail=prv;
     }
@@ -110,8 +112,6 @@ public:
             if(len>maxlen)
                 pop_back(),len--;
         }
-        file.seekp(index);
-        file.write(reinterpret_cast<char *>(&t),sizeofT);
     }
     void read(T &t, const int index) {
         link *ptr=head;
