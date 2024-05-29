@@ -34,6 +34,8 @@ public:
         link *ptr=head;
         while(ptr){
             link *nxt=ptr->nxt;
+            file.seekp(ptr->pos);
+            file.write(reinterpret_cast<char *>(&ptr->val),sizeofT);
             delete ptr;
             ptr=nxt;
         }
@@ -78,7 +80,7 @@ public:
         link *prv=tail->prv;
         prv->nxt=nullptr;
         file.seekp(tail->pos);
-        file.write(reinterpret_cast<char *>(&tail->pos),sizeofT);
+        file.write(reinterpret_cast<char *>(&tail->val),sizeofT);
         delete tail;
         tail=prv;
     }
