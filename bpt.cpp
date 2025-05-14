@@ -1,7 +1,7 @@
 #include<iostream>
 #include<array>
 #include<string>
-#include<bits/stdc++.h>
+#include<cstdio>
 #include "MemoryRiver.hpp"
 const int M=300;
 class node;
